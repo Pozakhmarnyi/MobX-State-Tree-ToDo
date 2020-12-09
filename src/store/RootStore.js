@@ -6,10 +6,19 @@ const RootStore = t
 	.model('RootStore', {					// MST - має мати один корневий стор - із якою всі решта		
 		todos: t.optional(TodoListModel, {}),
 		groups: t.optional(GroupListModel, {}),
-	});
+
+	})
+// .actions((self) => ({
+// 	addOneGroup(groupTitle) {
+// 		self.push.unshift(groupTitle)
+// 	},
+// }));
+
+
+
+
 
 const rootStore = RootStore.create({})
-
 export default rootStore;
 
 

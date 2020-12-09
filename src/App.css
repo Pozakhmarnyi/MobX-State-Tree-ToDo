@@ -54,18 +54,18 @@ body {
   overflow: auto;
 }
 
-/* .mainbox {
-  width: 900px;
+.mainbox {
+  width: 600px;
   display: flex;
   box-sizing: border-box;
   background: white;
   border-radius: 20px;
   box-shadow: 0 10px 45px rgba(0, 0, 0, 0.5);
-} */
+}
 
 .List_Of_Todo {
   padding: 15px;
-  width: 300px;
+  width: 70%;
   background: rgb(255, 255, 255);
   box-shadow: 0 10px 45px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -73,6 +73,7 @@ body {
   align-content: center;
   justify-content: center;
   overflow: auto;
+  border-radius: 10px;
 }
 .oneItem {
   padding: 2px;
@@ -86,4 +87,9 @@ body {
 }
 .black {
   color: black;
+}
+
+.Group_of_list {
+  padding: 15px;
+  width: 30%;
 }

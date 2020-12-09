@@ -37,7 +37,7 @@ export const TodoModel = t
 
 	}));
 
-// const newTodo = TodoModel.create({ id: uID(), title: 'Fack' })
+// const newTodo = TodoModel.create({ id: uID(), title: 'Fas' })
 
 // newTodo.isCompleted = true;      ТАК Є ПОМИЛКА, оскільки для внутрішньої зміни елементів у MST - треба робити через .actions і там створити якийсь метод - у нашому випадко toggleCompleted() {self.isCompleted = !self.isCompleted}
 // prettyPrint(newTodo);
@@ -47,7 +47,9 @@ export const TodoModel = t
 
 
 export const TodoListModel = t
-	.model('TodoListModel', { 		// наш MST - буде знати автоматично, що вміст нашого масиву матиме тип TodoModel ТАк -> list: t.array(TodoModel)
+	.model('TodoListModel', { // наш MST - буде знати автоматично, що вміст нашого масиву матиме тип TodoModel ТАк -> list: t.array(TodoModel)
+		id: uID(),
+		title: t.optional(t.string, 'TodoList'),
 		list: t.array(TodoModel), 							//якщо t.optional ("першим аргументом - те,що повинно бути!" , а другим це по дефолту, якщо нема першого)
 	})
 	.views((self) => ({

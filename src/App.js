@@ -7,7 +7,15 @@ import { prettyPrint } from './store/utils';
 
 
 
+const List_Of_Group = observer((props) => {
+	console.log("render List_Of_Group")
+	return (
+		<li key={props.group.id}>
+			{props.group.title}
 
+		</li>
+	)
+})
 
 const TodoItem = observer((props) => {
 	console.log("render TodoItem")
@@ -22,16 +30,9 @@ const TodoItem = observer((props) => {
 				<i className={props.todo.toggleFavorite ? "fas fa-star GREEN " : "fas fa-star"}
 					onClick={() => props.todo.toggleFavorite()} />
 			</li>
-
 		</div>
 	)
 })
-
-
-
-
-
-
 
 
 function App() {
@@ -52,8 +53,6 @@ function App() {
 	// 	console.log('legngth', rootStore.todos.list.length)
 	// }
 	// console.log('object', ifComplete())
-
-
 	// let completedItem = rootStore.todos.ifComplete;
 
 	return (
@@ -61,8 +60,11 @@ function App() {
 		<div className="mainbox" >
 
 			<div className="Group_of_list">
-				{/* {values(rootStore).map((oneGroup))} */}
-
+				<ul>
+					{values(rootStore).map((group) => {
+						return (<List_Of_Group group={group} />)
+					})}
+				</ul >
 			</div>
 			<div className="List_Of_Todo">
 				<form id="form" onSubmit={submitHandler}>

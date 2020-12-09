@@ -19,6 +19,8 @@ const GroupModel = t
 
 export const GroupListModel = t
 	.model('GroupListModel', {
+		id: uID(),
+		title: t.optional(t.string, 'GroupList'),
 		list: t.array(GroupModel), 							// олюблена моя частина - Вкладеність 
 	})
 	.actions((self) => ({
