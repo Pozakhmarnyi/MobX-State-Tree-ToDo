@@ -54,10 +54,18 @@ export const TodoListModel = t
 		get favoriteList() {
 			return self.list.filter(item => item.isFavorite)   // окремо відфільткував з усього і викликав як об"єкт - так робити, як з олюбненим товаром, так і дaні юзерів
 		},
-		get length() {
-			return self.list.length
+		get ifComplete() {
+			let count = 0
+			for (let i = 0; i <= self.list.length; i++) {
+
+				if (self.list[i].isCompleted === true) { count++ }
+			}
+			return count
+
 		}
-	}))
+
+	}
+	))
 	.actions((self) => ({  		   	// оскільки це MST - тут не можна вручну добивити, ще щось. І методи .push() і їм подібні, не поможуть, треба робити .action ІЗ своїми методами
 		add(title) {	// get писати перед методом, коли нема потреби в пропсах - зараз у пропсі (title)
 			const todo = {		    //const todo = TodoModel.create({...}) так не обо"язково вказувати, оскільки MST знає, яку можедель ми використовуємо

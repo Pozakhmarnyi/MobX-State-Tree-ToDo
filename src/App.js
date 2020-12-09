@@ -6,19 +6,23 @@ import rootStore from './store/RootStore';
 import { prettyPrint } from './store/utils';
 
 
+
+
+
 const TodoItem = observer((props) => {
 	console.log("render TodoItem")
 	return (
 		<div className="oneItem">
 			<li
 				key={props.todo.id}
-				className={props.todo.isCompleted ? 'completed' : undefined}
+				className={props.todo.isCompleted ? 'completed ' : undefined}
 				onClick={() => props.todo.toggleCompleted()}
 			>
 				{props.todo.title}
+				<i className={props.todo.toggleFavorite ? "fas fa-star GREEN " : "fas fa-star"}
+					onClick={() => props.todo.toggleFavorite()} />
 			</li>
-			<i className={props.todo.toggleFavorite ? "fas fa-star GREEN" : "fas fa-heart-broken"}
-				onClick={() => props.todo.toggleFavorite()} />
+
 		</div>
 	)
 })
@@ -38,12 +42,28 @@ function App() {
 		event.preventDefault();
 	}
 
+	// function ifComplete() {
+	// 	let count = 0
+	// 	for (let i = 0; i <= rootStore.todos.list.length; i++) {
+	// 		if (rootStore.todos.list[i].isCompleted === true) { return count++ }
+	// 		console.log('count', count)
+
+	// 	}
+	// 	console.log('legngth', rootStore.todos.list.length)
+	// }
+	// console.log('object', ifComplete())
 
 
+	// let completedItem = rootStore.todos.ifComplete;
 
 	return (
 
 		<div className="mainbox" >
+
+			<div className="Group_of_list">
+				{/* {values(rootStore).map((oneGroup))} */}
+
+			</div>
 			<div className="List_Of_Todo">
 				<form id="form" onSubmit={submitHandler}>
 					<input placeholder="wtire some task" onChange={(e) => newValue = e.target.value}></input>
@@ -51,9 +71,11 @@ function App() {
 					<ul>
 						{values(rootStore.todos.list).map((todo) => (
 							<TodoItem todo={todo} />
-
 						))}
+
 					</ul >
+					{/* {rootStore.todos.ifComplete} ???  finished */}
+					{/* {completedItem} */} {rootStore.todos.list.length}
 				</form>
 			</div>
 

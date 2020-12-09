@@ -18,7 +18,9 @@ export default rootStore;
 // autorun(() => prettyPrint(rootStore))
 
 rootStore.todos.add("banana");
-// const todo = rootStore.todos.list[0]
+rootStore.todos.add("lemon");
+
+const todo = rootStore.todos.list[0]
 
 rootStore.groups.add("shopping list")
 // const group = rootStore.groups.list[0]
@@ -27,7 +29,7 @@ rootStore.groups.add("shopping list")
 // prettyPrint(group)  
 
 // group.addTodo(todo)
-// todo.toggleCompleted()
+todo.toggleCompleted()
 
 // prettyPrint(rootStore)
 // prettyPrint(todo === group.todos[0])
