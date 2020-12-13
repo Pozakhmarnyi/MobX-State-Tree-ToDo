@@ -1,5 +1,6 @@
 import { types as t } from 'mobx-state-tree';
 import { v4 as uID } from 'uuid';
+import rootStore from './RootStore';
 import { TodoModel } from './TodoStore';
 
 
@@ -7,12 +8,24 @@ const GroupModel = t
 	.model('GroupModel', {					// надаю форму моделі
 		id: t.string,
 		title: t.string,
-		todos: t.array(t.reference(TodoModel)),
+		// todos: t.array(t.reference(TodoModel)),
+		todos: t.array(TodoModel),
 	})
 	.actions((self) => ({
-		addTodo(todo) {
+		addTodo(title) {
+			const todo = {
+				id: uID(),
+				title,
+			}
 			self.todos.unshift(todo)
 		},
+		toggleCompleted() {
+			self.isCompleted = !self.isCompleted
+		},
+		toggleFavorite() {
+			self.isFavorite = !self.isFavorite
+		}
+
 	}));
 
 
@@ -44,12 +57,20 @@ export const GroupListModel = t
 			}
 			self.list.unshift(group)
 		},
+		// addGroup(title) {
+
+		// }
 	}))
+
+
+
+
+
+
 
 // const group = GroupModel.create({
 // 	id: uID(),
 // 	title: 'My new list',
-
 // })
 
 // const groupList = GroupListModel.create({
@@ -68,5 +89,5 @@ export const GroupListModel = t
 
 // prettyPrint(todoList.favoriteList);
 
-
 // prettyPrint(todoList);
+

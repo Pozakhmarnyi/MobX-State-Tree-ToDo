@@ -32,6 +32,17 @@ rootStore.todos.add("lemon");
 const todo = rootStore.todos.list[0]
 
 rootStore.groups.add("shopping list")
+rootStore.groups.add("My plan for week")
+
+
+rootStore.groups.list[0].addTodo("Finished this ToDO")
+rootStore.groups.list[0].addTodo("add simple UI")
+
+
+rootStore.groups.list[0].toggleCompleted() // чомусь не змінює !!!
+
+
+
 // const group = rootStore.groups.list[0]
 
 // group.addTodo({ id: "asd", title: "Write by hand" }) // вручну добавив \\ БУде відображатись у ДЕРЕВІ // Але тепер не працюватиме, оскільки використовую референс
@@ -42,4 +53,3 @@ todo.toggleCompleted()
 
 // prettyPrint(rootStore)
 // prettyPrint(todo === group.todos[0])
-
