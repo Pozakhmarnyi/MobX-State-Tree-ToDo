@@ -7,12 +7,12 @@ import { prettyPrint } from './store/utils';
 
 
 
-const List_Of_Group = observer((props) => {
+const ListOfGroup = observer((props) => {
 	console.log("render List_Of_Group")
 	return (
-		<li key={props.group.id}>
-			{props.group.title}
-
+		<li key={props.group.id} className="oneItem">
+			<b>	{props.group.title}</b>
+			{props.group.ifComplete}
 		</li>
 	)
 })
@@ -24,12 +24,13 @@ const TodoItem = observer((props) => {
 			<li
 				key={props.todo.id}
 				className={props.todo.isCompleted ? 'completed ' : undefined}
-				onClick={() => props.todo.toggleCompleted()}
-			>
+				onClick={() => props.todo.toggleCompleted()}>
+
 				{props.todo.title}
-				<i className={props.todo.toggleFavorite ? "fas fa-star GREEN " : "fas fa-star"}
-					onClick={() => props.todo.toggleFavorite()} />
+
 			</li>
+			<i className={props.todo.toggleFavorite ? "fas fa-star GREEN " : "fas fa-star"}
+				onClick={() => props.todo.toggleFavorite()} />
 		</div>
 	)
 })
@@ -43,18 +44,6 @@ function App() {
 		event.preventDefault();
 	}
 
-	// function ifComplete() {
-	// 	let count = 0
-	// 	for (let i = 0; i <= rootStore.todos.list.length; i++) {
-	// 		if (rootStore.todos.list[i].isCompleted === true) { return count++ }
-	// 		console.log('count', count)
-
-	// 	}
-	// 	console.log('legngth', rootStore.todos.list.length)
-	// }
-	// console.log('object', ifComplete())
-	// let completedItem = rootStore.todos.ifComplete;
-
 	return (
 
 		<div className="mainbox" >
@@ -62,7 +51,7 @@ function App() {
 			<div className="Group_of_list">
 				<ul>
 					{values(rootStore).map((group) => {
-						return (<List_Of_Group group={group} />)
+						return (<ListOfGroup group={group} />)
 					})}
 				</ul >
 			</div>
@@ -76,8 +65,8 @@ function App() {
 						))}
 
 					</ul >
-					{/* {rootStore.todos.ifComplete} ???  finished */}
-					{/* {completedItem} */} {rootStore.todos.list.length}
+					{rootStore.todos.ifComplete} =  finished
+					{/* {completedItem} */} {rootStore.todos.list.length} = length
 				</form>
 			</div>
 

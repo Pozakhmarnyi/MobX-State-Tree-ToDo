@@ -76,6 +76,7 @@ body {
   border-radius: 10px;
 }
 .oneItem {
+  width: 100%;
   padding: 2px;
   display: flex;
   align-items: center;

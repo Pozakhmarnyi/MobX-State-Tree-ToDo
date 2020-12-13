@@ -23,6 +23,19 @@ export const GroupListModel = t
 		title: t.optional(t.string, 'GroupList'),
 		list: t.array(GroupModel), 							// олюблена моя частина - Вкладеність 
 	})
+	.views((self) => ({
+		get favoriteList() {
+			return self.list.filter(item => item.isFavorite)   // окремо відфільткував з усього і викликав як об"єкт - так робити, як з олюбненим товаром, так і дaні юзерів
+		},
+		get ifComplete() {
+			let count = 0
+			for (let i = 0; i < self.list.length; i++) {
+				if (self.list[i].isCompleted === true) { count++ }
+			}
+			return count
+		}
+
+	}))
 	.actions((self) => ({
 		add(title) {
 			const group = {
