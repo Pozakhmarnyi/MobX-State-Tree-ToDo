@@ -33,7 +33,10 @@ rootStore.groups.list[0].addTodo("Finished this ToDO")
 rootStore.groups.list[0].addTodo("add simple UI")
 
 
-rootStore.groups.list[0].toggleCompleted() // чомусь не змінює !!!
+rootStore.groups.list[0].toggleFavorite() // чомусь не змінює 
+
+rootStore.groups.list[0].toggleCompleted() // чомусь не змінює 
+rootStore.groups.list[1].toggleCompleted() // чомусь не змінює 
 
 
 

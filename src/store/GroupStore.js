@@ -63,28 +63,3 @@ export const GroupListModel = t
 
 
 
-
-
-// const group = GroupModel.create({
-// 	id: uID(),
-// 	title: 'My new list',
-// })
-
-// const groupList = GroupListModel.create({
-// 	list: [group]
-// })
-
-// const todoList = TodoListModel.create(state)
-
-// todoList.add('chocolate')
-// todoList.add('oil')
-
-// todoList.list[1].toggleCompleted();
-// todoList.list[0].toggleFavorite();
-
-
-
-// prettyPrint(todoList.favoriteList);
-
-// prettyPrint(todoList);
-
