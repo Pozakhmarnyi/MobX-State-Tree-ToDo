@@ -5,10 +5,9 @@ import { TodoModel } from './TodoStore';
 
 
 const GroupModel = t
-	.model('GroupModel', {					// надаю форму моделі
+	.model('GroupModel', {
 		id: t.string,
 		title: t.string,
-		// todos: t.array(t.reference(TodoModel)),
 		todos: t.array(TodoModel),
 	})
 	.actions((self) => ({
@@ -34,11 +33,11 @@ export const GroupListModel = t
 	.model('GroupListModel', {
 		id: uID(),
 		title: t.optional(t.string, 'GroupList'),
-		list: t.array(GroupModel), 							// олюблена моя частина - Вкладеність 
+		list: t.array(GroupModel),
 	})
 	.views((self) => ({
 		get favoriteList() {
-			return self.list.filter(item => item.isFavorite)   // окремо відфільткував з усього і викликав як об"єкт - так робити, як з олюбненим товаром, так і дaні юзерів
+			return self.list.filter(item => item.isFavorite)
 		},
 		get ifComplete() {
 			let count = 0
@@ -57,9 +56,7 @@ export const GroupListModel = t
 			}
 			self.list.unshift(group)
 		},
-		// addGroup(title) {
 
-		// }
 	}))
 
 

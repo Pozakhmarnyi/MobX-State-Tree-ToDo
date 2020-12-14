@@ -31,6 +31,7 @@ const TodoItem = observer((props) => {
 			</li>
 			<i className={props.todo.toggleFavorite ? "fas fa-star GREEN " : "fas fa-star"}
 				onClick={() => props.todo.toggleFavorite()} />
+			{/* 'змінює на улюблений, але не рендерить' */}
 		</div>
 	)
 })
@@ -66,7 +67,7 @@ function App() {
 
 					</ul >
 					{rootStore.todos.ifComplete} =  finished
-					{/* {completedItem} */} {rootStore.todos.list.length} = length
+					{rootStore.todos.list.length} = length
 				</form>
 			</div>
 
