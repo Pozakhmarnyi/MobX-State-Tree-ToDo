@@ -83,11 +83,11 @@ body {
   justify-content: space-between;
 }
 
-.GREEN {
-  color: green;
+.gold {
+  color: gold;
 }
 .black {
-  color: black;
+  color: rgb(161, 161, 161);
 }
 
 .Group_of_list {

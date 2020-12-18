@@ -29,9 +29,8 @@ const TodoItem = observer((props) => {
 				{props.todo.title}
 
 			</li>
-			<i className={props.todo.toggleFavorite ? "fas fa-star GREEN " : "fas fa-star"}
+			<i className={props.todo.isFavorite ? "fas fa-star gold " : "fas fa-star black"}
 				onClick={() => props.todo.toggleFavorite()} />
-			{/* 'змінює на улюблений, але не рендерить' */}
 		</div>
 	)
 })
