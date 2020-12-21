@@ -94,3 +94,6 @@ body {
   padding: 15px;
   width: 30%;
 }
+.noPad {
+  padding-left: 0;
+}

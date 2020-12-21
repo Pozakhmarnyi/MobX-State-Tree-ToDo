@@ -37,12 +37,14 @@ rootStore.groups.add("My plan for week")
 
 rootStore.groups.list[0].addTodo("Finished this ToDO")
 rootStore.groups.list[0].addTodo("add simple UI")
+rootStore.groups.list[1].addTodo("one ToDO in [1] - shoping list")
 
 
 
 rootStore.groups.list[0].todos[0].toggleCompleted() // все ок !
 
-
+let numb = rootStore.groups.list[0].ifComplete
+console.log('numb', numb)
 
 // const group = rootStore.groups.list[0]
 

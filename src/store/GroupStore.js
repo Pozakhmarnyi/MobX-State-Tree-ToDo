@@ -11,6 +11,20 @@ const GroupModel = t
 		// todos: t.array(t.reference(TodoModel)),
 		todos: t.array(TodoModel),
 	})
+	// .views((self) => ({
+	// 	get favoriteList() {
+	// 		return self.list.filter(item => item.isFavorite)   // окремо відфільткував з усього і викликав як об"єкт - так робити, як з олюбненим товаром, так і дaні юзерів
+	// 	},
+	// 	get ifComplete() {
+	// 		let count = 0
+	// 		for (let i = 0; i < self.list.length; i++) {
+	// 			if (self.list[i].isCompleted === true) { count++ }
+	// 		}
+	// 		return count
+	// 	}
+
+	// }))
+
 	.actions((self) => ({
 		addTodo(title) {
 			const todo = {
@@ -57,9 +71,6 @@ export const GroupListModel = t
 			}
 			self.list.unshift(group)
 		},
-		// addGroup(title) {
-
-		// }
 	}))
 
 
