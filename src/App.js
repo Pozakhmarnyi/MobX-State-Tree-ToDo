@@ -15,7 +15,8 @@ const ListOfGroup = observer((props) => {
 	return (
 		<li key={props.group.id} className="oneItem">
 			<b>	{props.group.title}</b>
-			{props.group.todos.ifComplete}
+			{props.group.ifComplete}
+
 		</li>
 	)
 })
@@ -43,11 +44,10 @@ function App() {
 	const [value, setValue] = useState("");
 	const [valueTD, setValueTD] = useState("");
 	console.log('render app')
-	prettyPrint(rootStore)
+	// prettyPrint(rootStore)
 
-	const submitHandler = (event) => {
+	const onSubmitHandler = (event) => {
 		event.preventDefault();
-
 		if (value.trim()) {
 			setValue("");
 		}
@@ -57,17 +57,18 @@ function App() {
 
 	}
 
+
 	return (
 
 		<div className="mainbox" >
 
 			<div className="Group_of_list">
-				<form id="form" onSubmit={submitHandler}>
+				<form id="form" onSubmit={onSubmitHandler}>
 					<input placeholder="create List"
 						value={value}
 						onChange={(event) => setValue(event.target.value)}></input>
 					<ul className="noPad">
-						<button type="submit" onClick={() => rootStore.groups.add(value)}>Add</button>
+						<button type="submit" onClick={() => value ? rootStore.groups.add(value) : undefined}>Add</button>
 						{values(rootStore.groups.list).map((group) => {
 							return (<ListOfGroup group={group} />)
 						})}
@@ -75,21 +76,21 @@ function App() {
 				</form>
 			</div>
 			<div className="List_Of_Todo">
-				<form id="form" onSubmit={submitHandler}>
+				<h3>{rootStore.groups.list[0].title}</h3>
+				<form id="form" onSubmit={onSubmitHandler}>
 					<input placeholder="wtire some task"
 						value={valueTD}
 						onChange={(event) => setValueTD(event.target.value)}></input>
-					<button type="submit" onClick={() => rootStore.todos.add(valueTD)} >Add</button>
+					<button type="submit"
+						onClick={() => valueTD ? rootStore.groups.list[0].addTodo(valueTD) : undefined} >Add</button>
 					<ul>
 						{values(rootStore.groups.list[0].todos).map((todo) => (
 							<TodoItem todo={todo} />
 						))}
-
 					</ul >
-					{rootStore.todos.ifComplete} =  finished in todos
-					<p>{rootStore.groups.list[0].todos.ifCompleted} =  finished in Group </p>
+					{/* {rootStore.todos.ifComplete} =  finished in todos */}
+					{rootStore.groups.list[0].ifComplete} = Completed
 
-					<p>{rootStore.todos.list.length} = length</p>
 				</form>
 			</div>
 
