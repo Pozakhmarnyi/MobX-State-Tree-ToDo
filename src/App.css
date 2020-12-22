@@ -83,6 +83,9 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+.inputList {
+  width: 70%;
+}
 
 .gold {
   color: gold;
