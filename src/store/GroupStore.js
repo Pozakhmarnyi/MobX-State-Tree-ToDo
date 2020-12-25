@@ -12,9 +12,16 @@ const GroupModel = t
 		todos: t.array(TodoModel),
 	})
 	.views((self) => ({
-		// get favoriteList() {
-		// 	return self.list.filter(item => item.isFavorite)   // окремо відфільткував з усього і викликав як об"єкт - так робити, як з олюбненим товаром, так і дaні юзерів
-		// },
+		get favoriteList() {
+			return self.todos.filter(item => item.isFavorite)   // окремо відфільткував з усього і викликав як об"єкт - так робити, як з олюбненим товаром, так і дaні юзерів
+
+
+			// for (let i = 0; i < self.todos.length; i++) {
+			// 	self.favorite = self.todos.filter(item => item.isFavorite)
+			// }
+			// return self.favorite
+		},
+
 		get ifComplete() {
 			let count = 0
 			for (let i = 0; i < self.todos.length; i++) {
@@ -48,7 +55,8 @@ export const GroupListModel = t
 	.model('GroupListModel', {
 		id: uID(),
 		title: t.optional(t.string, 'GroupList'),
-		list: t.array(GroupModel), 							// олюблена моя частина - Вкладеність 
+		list: t.array(GroupModel), 						// олюблена моя частина - Вкладеність 
+
 	})
 	.views((self) => ({
 		get favoriteList() {
@@ -87,18 +95,3 @@ export const GroupListModel = t
 // const groupList = GroupListModel.create({
 // 	list: [group]
 // })
-
-// const todoList = TodoListModel.create(state)
-
-// todoList.add('chocolate')
-// todoList.add('oil')
-
-// todoList.list[1].toggleCompleted();
-// todoList.list[0].toggleFavorite();
-
-
-
-// prettyPrint(todoList.favoriteList);
-
-// prettyPrint(todoList);
-

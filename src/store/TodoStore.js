@@ -51,6 +51,7 @@ export const TodoListModel = t
 		id: uID(),
 		title: t.optional(t.string, 'TodoList'),
 		list: t.array(TodoModel), 							//якщо t.optional ("першим аргументом - те,що повинно бути!" , а другим це по дефолту, якщо нема першого)
+		// list: t.array(t.reference(TodoModel)),
 	})
 	.views((self) => ({
 		get favoriteList() {
@@ -98,3 +99,4 @@ export const TodoListModel = t
 
 
 // prettyPrint(todoList);
+

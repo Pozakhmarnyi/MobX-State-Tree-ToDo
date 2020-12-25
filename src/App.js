@@ -4,9 +4,13 @@ import './App.css';
 import { values } from 'mobx'; // у МСТ - є ще свої пропси, але щоб ми користувались і бачили лише свої, треба юзати values з мобХ
 import { observer } from 'mobx-react-lite'
 import rootStore from './store/RootStore';
+import rootStore2 from './store/RootStore2';
 import { prettyPrint } from './store/utils';
 
 
+// rootStore2.favorite[0].folder.title
+// rootStore2.favorite[0].title
+console.log(rootStore2.favorite[0].title + rootStore2.favorite[0].folder.title)
 
 
 const ListOfGroup = observer((props) => {
@@ -41,16 +45,21 @@ const TodoItem = observer((props) => {
 })
 
 
+
+// let favorite = rootStore.groups.list[0].favoriteList
+// console.log('favorite', favorite)
+
+
 function App() {
 	const [value, setValue] = useState("");
 	const [valueTD, setValueTD] = useState("");
 	const [ind, setInd] = useState(0);
 	console.log('render app')
-	// prettyPrint(rootStore)
+
+	prettyPrint(rootStore)
 
 	const setNewIndex = (props) => {
 		setInd(props)
-		console.log('props.index', props)
 	}
 
 	const onSubmitHandler = (event) => {
@@ -63,6 +72,10 @@ function App() {
 		}
 
 	}
+
+
+
+	// rootStore.groups.list[0].favorite
 
 
 	return (
@@ -80,6 +93,7 @@ function App() {
 						{values(rootStore.groups.list).map((group, index) => {
 							return (<ListOfGroup group={group} index={index} setNewIndex={setNewIndex} />)
 						})}
+
 					</ul >
 				</form>
 			</div>
