@@ -14,14 +14,11 @@ const GroupModel = t
 	.views((self) => ({
 		get favoriteList() {
 			return self.todos.filter(item => item.isFavorite)   // окремо відфільткував з усього і викликав як об"єкт - так робити, як з олюбненим товаром, так і дaні юзерів
-
-
 			// for (let i = 0; i < self.todos.length; i++) {
 			// 	self.favorite = self.todos.filter(item => item.isFavorite)
 			// }
 			// return self.favorite
 		},
-
 		get ifComplete() {
 			let count = 0
 			for (let i = 0; i < self.todos.length; i++) {
@@ -29,9 +26,7 @@ const GroupModel = t
 			}
 			return count
 		}
-
 	}))
-
 	.actions((self) => ({
 		addTodo(title) {
 			const todo = {
@@ -46,8 +41,9 @@ const GroupModel = t
 		toggleFavorite() {
 			self.isFavorite = !self.isFavorite
 		}
-
 	}));
+
+
 
 
 
@@ -56,7 +52,6 @@ export const GroupListModel = t
 		id: uID(),
 		title: t.optional(t.string, 'GroupList'),
 		list: t.array(GroupModel), 						// олюблена моя частина - Вкладеність 
-
 	})
 	.views((self) => ({
 		get favoriteList() {
@@ -69,7 +64,6 @@ export const GroupListModel = t
 			}
 			return count
 		}
-
 	}))
 	.actions((self) => ({
 		add(title) {

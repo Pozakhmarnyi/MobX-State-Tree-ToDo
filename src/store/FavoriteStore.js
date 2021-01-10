@@ -7,30 +7,15 @@ import { TodoModel } from './TodoStore';
 
 export const FavoriteModel = t
 	.model('FavoriteModel', {
-		folder: t.reference(TestStore),
-		title: t.string
+		title: t.optional(t.string, 'Favorite'),
+		todos: t.array(t.reference(TodoModel)),
+
 	})
-	// .views((self) => ({
-	// 	get favoriteList() {
+	.actions((self) => ({
+		addTodo(todo) {
 
-	// 		// for (let i = 0; i < self.list.length; i++) {
+			self.todos.unshift(todo)
+		},
 
-	// 		// 	self.list = rootStore.groups.list[i].todos.filter(item => item.isFavorite)
-	// 		// }
-
-	// 		// return self.list
-
-
-	// 		// return self.list = rootStore.groups.list[i].todos.filter(item => item.isFavorite)  
-	// 	},
-	// 	// get ifComplete() {
-	// 	// 	let count = 0
-	// 	// 	for (let i = 0; i < self.list.length; i++) {
-	// 	// 		if (self.list[i].isCompleted === true) { count++ }
-	// 	// 	}
-	// 	// 	return count
-	// 	// }
-
-	// }))
-
+	}));
 

@@ -10,13 +10,8 @@ const RootStore = t
 	.model('RootStore', {					// MST - має мати один корневий стор - із якою всі решта		
 		todos: t.optional(TodoListModel, {}),
 		groups: t.optional(GroupListModel, {}),
-		// favorite: t.optional(FavoriteModel, {}),
-
+		favorite: t.optional(FavoriteModel, {}),
 	})
-
-
-
-
 
 
 const rootStore = RootStore.create({})
@@ -60,17 +55,18 @@ rootStore.groups.list[1].todos[0].toggleFavorite()
 // prettyPrint(todo === group.todos[0])
 
 
-const referenceTodo = rootStore.groups.list[1].todos[0];
+export const referenceTodo = rootStore.groups.list[1].todos[0];
 console.log('referenceTodo', referenceTodo)
-// rootStore.favorite.add(referenceTodo)
+rootStore.favorite.addTodo(referenceTodo)
+
 
 
 //гімнячу з перебором
 
-let onlyFavorites = [];
-for (let i = 0; i < rootStore.groups.list.length; i++) {
+// let onlyFavorites = [];
+// for (let i = 0; i < rootStore.groups.list.length; i++) {
 
-	onlyFavorites.push(rootStore.groups.list[i].todos.filter(item => item.isFavorite))
-}
+// 	onlyFavorites.push(rootStore.groups.list[i].todos.filter(item => item.isFavorite))
+// }
 
-console.log('onlyFavorites', onlyFavorites)
+// console.log('onlyFavorites', onlyFavorites)

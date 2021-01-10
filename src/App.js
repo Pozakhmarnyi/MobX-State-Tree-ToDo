@@ -54,9 +54,13 @@ function App() {
 	const [value, setValue] = useState("");
 	const [valueTD, setValueTD] = useState("");
 	const [ind, setInd] = useState(0);
-	console.log('render app')
+	const [invisible, setVisible] = useState("switcherVisibleOff");
 
-	prettyPrint(rootStore)
+	let switcherClass = "modalBG " + invisible
+
+
+	// console.log('render app')
+	// prettyPrint(rootStore)
 
 	const setNewIndex = (props) => {
 		setInd(props)
@@ -79,45 +83,55 @@ function App() {
 
 
 	return (
-
-		<div className="mainbox" >
-
-			<div className="Group_of_list">
-				<form id="form" onSubmit={onSubmitHandler}>
-					<input placeholder="create List" className="inputList"
-						value={value}
-						onChange={(event) => setValue(event.target.value)}></input>
-					<button type="submit" onClick={() => value ? rootStore.groups.add(value) : undefined}>Add</button>
-					<ul className="noPad">
-
-						{values(rootStore.groups.list).map((group, index) => {
-							return (<ListOfGroup group={group} index={index} setNewIndex={setNewIndex} />)
-						})}
-
-					</ul >
-				</form>
+		<>
+			<div className={switcherClass} onClick={() => {
+				setVisible("switcherVisibleOff")
+			}}>
+				<div className="modalWindow">Favorite list</div>
 			</div>
-			<div className="List_Of_Todo">
-				<h3>{rootStore.groups.list[ind].title}</h3>
-				<form id="form" onSubmit={onSubmitHandler}>
-					<input placeholder="wtire some task"
-						value={valueTD}
-						onChange={(event) => setValueTD(event.target.value)}></input>
-					<button type="submit"
-						onClick={() => valueTD ? rootStore.groups.list[ind].addTodo(valueTD) : undefined} >Add</button>
-					<ul>
-						{values(rootStore.groups.list[ind].todos).map((todo) => (
-							<TodoItem todo={todo} />
-						))}
-					</ul >
-					{/* {rootStore.todos.ifComplete} =  finished in todos */}
-					{/* {rootStore.groups.list[ind].ifComplete} = Completed */}
+			<div className="mainbox" >
 
-				</form>
+				<div className="Group_of_list">
+					<div className="divStar"><i onClick={() => {
+						setVisible("")
+					}} class="fas fa-star gold icoStar"></i></div>
+
+					<form id="form" onSubmit={onSubmitHandler}>
+						<input placeholder="create List" className="inputList"
+							value={value}
+							onChange={(event) => setValue(event.target.value)}></input>
+						<button type="submit" onClick={() => value ? rootStore.groups.add(value) : undefined}>Add</button>
+						<ul className="noPad">
+
+							{values(rootStore.groups.list).map((group, index) => {
+								return (<ListOfGroup group={group} index={index} setNewIndex={setNewIndex} />)
+							})}
+
+						</ul >
+					</form>
+				</div>
+				<div className="List_Of_Todo">
+					<h3>{rootStore.groups.list[ind].title}</h3>
+					<form id="form" onSubmit={onSubmitHandler}>
+						<input placeholder="wtire some task"
+							value={valueTD}
+							onChange={(event) => setValueTD(event.target.value)}></input>
+						<button type="submit"
+							onClick={() => valueTD ? rootStore.groups.list[ind].addTodo(valueTD) : undefined} >Add</button>
+						<ul>
+							{values(rootStore.groups.list[ind].todos).map((todo) => (
+								<TodoItem todo={todo} />
+							))}
+						</ul >
+						{/* {rootStore.todos.ifComplete} =  finished in todos */}
+						{/* {rootStore.groups.list[ind].ifComplete} = Completed */}
+
+					</form>
+				</div>
+
+
 			</div>
-
-
-		</div>
+		</>
 	)
 
 }
