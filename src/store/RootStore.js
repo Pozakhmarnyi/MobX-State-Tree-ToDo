@@ -39,34 +39,51 @@ rootStore.groups.list[1].addTodo("one ToDO in [1] - shoping list")
 
 rootStore.groups.list[0].todos[0].toggleCompleted() // все ок !
 rootStore.groups.list[0].todos[0].toggleFavorite() // все ок !
+rootStore.groups.list[0].todos[1].toggleFavorite() // все ок !
 rootStore.groups.list[1].todos[0].toggleFavorite()
 
 
-// const group = rootStore.groups.list[0]
-
-// group.addTodo({ id: "asd", title: "Write by hand" }) // вручну добавив \\ БУде відображатись у ДЕРЕВІ // Але тепер не працюватиме, оскільки використовую референс
-// prettyPrint(group)  
-
-// group.addTodo(todo)
-
-// todo.toggleCompleted()
-
-// prettyPrint(rootStore)
-// prettyPrint(todo === group.todos[0])
 
 
-export const referenceTodo = rootStore.groups.list[1].todos[0];
-console.log('referenceTodo', referenceTodo)
-rootStore.favorite.addTodo(referenceTodo)
+// Ось так норм працює референс
+// export const referenceTodo = rootStore.groups.list[1].todos[0];
+// console.log('referenceTodo', referenceTodo)
+// rootStore.favorite.addTodo(referenceTodo)
+
+
+// for (let i = 0; i < rootStore.groups.list.length; i++) {
+
+// }
+let faAAaavor1ts = rootStore.groups.list[0].favoriteList
+
+
+
+console.log('faAAaavor1ts', faAAaavor1ts)
+
+faAAaavor1ts.forEach(obj => { rootStore.favorite.addTodo(obj) })
+
+
 
 
 
 //гімнячу з перебором
 
 // let onlyFavorites = [];
-// for (let i = 0; i < rootStore.groups.list.length; i++) {
 
+// for (let i = 0; i < rootStore.groups.list.length; i++) {
 // 	onlyFavorites.push(rootStore.groups.list[i].todos.filter(item => item.isFavorite))
+
 // }
 
-// console.log('onlyFavorites', onlyFavorites)
+// onlyFavorites.push(rootStore.groups.list[0].todos.filter(item => item.isFavorite))
+
+let isFavor1 = []
+for (let i = 0; i < rootStore.groups.list.length; i++) {
+	isFavor1 = rootStore.groups.list[i].todos.filter(item => item.isFavorite)
+
+}
+// let isFavor1 = rootStore.groups.list[0].todos.filter(item => item.isFavorite)
+
+// rootStore.favorite.addTodo(...isFavor1)
+
+// console.log('isFavor1', isFavor1)

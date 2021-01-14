@@ -8,9 +8,7 @@ import rootStore2 from './store/RootStore2';
 import { prettyPrint } from './store/utils';
 
 
-// rootStore2.favorite[0].folder.title
-// rootStore2.favorite[0].title
-console.log(rootStore2.favorite[0].title + rootStore2.favorite[0].folder.title)
+// console.log(rootStore2.favorite[0].title + rootStore2.favorite[0].folder.title)
 
 
 const ListOfGroup = observer((props) => {
@@ -59,8 +57,8 @@ function App() {
 	let switcherClass = "modalBG " + invisible
 
 
-	// console.log('render app')
-	// prettyPrint(rootStore)
+	console.log('render app')
+	prettyPrint(rootStore)
 
 	const setNewIndex = (props) => {
 		setInd(props)
@@ -79,7 +77,6 @@ function App() {
 
 
 
-	// rootStore.groups.list[0].favorite
 
 
 	return (
