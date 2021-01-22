@@ -11,6 +11,7 @@ export const FavoriteModel = t
 		todos: t.array(t.reference(TodoModel)),
 
 	})
+
 	.actions((self) => ({
 		addTodo(todo) {
 

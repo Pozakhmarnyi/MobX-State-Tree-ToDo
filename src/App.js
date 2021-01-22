@@ -81,10 +81,21 @@ function App() {
 
 	return (
 		<>
-			<div className={switcherClass} onClick={() => {
-				setVisible("switcherVisibleOff")
-			}}>
-				<div className="modalWindow">Favorite list</div>
+			<div className={switcherClass} >
+				<div className="modalWindow">
+					<h2 className="modalWindow__title">Favorite List</h2>
+					<i className="fas fa-times modalWindow__ico-Close" onClick={() => {
+						setVisible("switcherVisibleOff")
+					}}></i>
+					<ul className="modalWindow__todo">
+						{
+
+							rootStore.groups.list[0].favoriteList.map((todo) => (
+								<TodoItem todo={todo} />
+							))}
+
+					</ul >
+				</div>
 			</div>
 			<div className="mainbox" >
 
@@ -120,8 +131,7 @@ function App() {
 								<TodoItem todo={todo} />
 							))}
 						</ul >
-						{/* {rootStore.todos.ifComplete} =  finished in todos */}
-						{/* {rootStore.groups.list[ind].ifComplete} = Completed */}
+
 
 					</form>
 				</div>

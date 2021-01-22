@@ -1,3 +1,4 @@
+import { computed } from 'mobx';
 import { types as t } from 'mobx-state-tree';
 import { v4 as uID } from 'uuid';
 import rootStore from './RootStore';
@@ -53,6 +54,7 @@ export const GroupListModel = t
 		title: t.optional(t.string, 'GroupList'),
 		list: t.array(GroupModel), 						// олюблена моя частина - Вкладеність 
 	})
+
 	.views((self) => ({
 		get favoriteList() {
 			return self.list.filter(item => item.isFavorite)   // окремо відфільткував з усього і викликав як об"єкт - так робити, як з олюбненим товаром, так і дaні юзерів

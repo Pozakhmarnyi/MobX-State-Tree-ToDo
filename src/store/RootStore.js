@@ -54,13 +54,13 @@ rootStore.groups.list[1].todos[0].toggleFavorite()
 // for (let i = 0; i < rootStore.groups.list.length; i++) {
 
 // }
-let faAAaavor1ts = rootStore.groups.list[0].favoriteList
 
 
+// let faAAaavor1ts = rootStore.groups.list[0].favoriteList
 
-console.log('faAAaavor1ts', faAAaavor1ts)
+// console.log('faAAaavor1ts', faAAaavor1ts)
 
-faAAaavor1ts.forEach(obj => { rootStore.favorite.addTodo(obj) })
+// faAAaavor1ts.forEach(obj => { rootStore.favorite.addTodo(obj) })
 
 
 
@@ -77,13 +77,13 @@ faAAaavor1ts.forEach(obj => { rootStore.favorite.addTodo(obj) })
 
 // onlyFavorites.push(rootStore.groups.list[0].todos.filter(item => item.isFavorite))
 
-let isFavor1 = []
+let isFavor1 = [];
 for (let i = 0; i < rootStore.groups.list.length; i++) {
 	isFavor1 = rootStore.groups.list[i].todos.filter(item => item.isFavorite)
 
+
 }
 // let isFavor1 = rootStore.groups.list[0].todos.filter(item => item.isFavorite)
+rootStore.favorite.addTodo(...isFavor1)
 
-// rootStore.favorite.addTodo(...isFavor1)
-
-// console.log('isFavor1', isFavor1)
+console.log('isFavor1', isFavor1)
