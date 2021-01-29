@@ -1,4 +1,6 @@
-import { types as t } from 'mobx-state-tree';
+import { types as t, onSnapshot } from 'mobx-state-tree';
+import { autorun } from "mobx";
+import localForage from 'localforage';
 import { GroupListModel } from './GroupStore';
 import { TodoListModel } from './TodoStore';
 import { values } from 'mobx';
@@ -6,15 +8,23 @@ import { FavoriteModel } from './FavoriteStore';
 import { observer } from 'mobx-react-lite';
 import { TestStore } from './TestStore';
 
+import { prettyPrint } from './utils';
+import createPersist from './persist';
+
 const RootStore = t
-	.model('RootStore', {					// MST - має мати один корневий стор - із якою всі решта		
+	.model('RootStore', {
 		todos: t.optional(TodoListModel, {}),
 		groups: t.optional(GroupListModel, {}),
 		favorite: t.optional(FavoriteModel, {}),
-	})
+	});
 
+const rootStore = RootStore.create({});
 
-const rootStore = RootStore.create({})
+onSnapshot(rootStore, (snapshot) => prettyPrint(snapshot));
+
+// const persist = createPersist(rootStore, localForage);
+// persist.rehydrate();
+
 export default rootStore;
 
 
@@ -77,13 +87,19 @@ rootStore.groups.list[1].todos[0].toggleFavorite()
 
 // onlyFavorites.push(rootStore.groups.list[0].todos.filter(item => item.isFavorite))
 
-let isFavor1 = [];
-for (let i = 0; i < rootStore.groups.list.length; i++) {
-	isFavor1 = rootStore.groups.list[i].todos.filter(item => item.isFavorite)
 
+
+for (let i = 0; i < rootStore.groups.list.length; i++) {
+
+	rootStore.groups.list[i].todos.forEach((item) => {
+
+		rootStore.favorite.addTodo(item)
+
+	});
+
+	// isFavor1 = rootStore.groups.list[i].todos.filter((item) => item.isFavorite)  // так не працювало, через те, що проходячи інтерацію змінної і у циклі фор - метод фільт не встигав профільтрувати все, оскільки перемикався на наступний масив листа
+	// rootStore.favorite.addTodo(...isFavor1)
 
 }
-// let isFavor1 = rootStore.groups.list[0].todos.filter(item => item.isFavorite)
-rootStore.favorite.addTodo(...isFavor1)
 
-console.log('isFavor1', isFavor1)
+

@@ -44,9 +44,6 @@ const TodoItem = observer((props) => {
 
 
 
-// let favorite = rootStore.groups.list[0].favoriteList
-// console.log('favorite', favorite)
-
 
 function App() {
 	const [value, setValue] = useState("");
@@ -58,7 +55,7 @@ function App() {
 
 
 	console.log('render app')
-	prettyPrint(rootStore)
+	// prettyPrint(rootStore)
 
 	const setNewIndex = (props) => {
 		setInd(props)
@@ -89,10 +86,15 @@ function App() {
 					}}></i>
 					<ul className="modalWindow__todo">
 						{
-
 							rootStore.groups.list[0].favoriteList.map((todo) => (
 								<TodoItem todo={todo} />
-							))}
+							))
+
+							// values(rootStore.groups.list).forEach(thisArg => thisArg.favoriteList.map((todo) => (<TodoItem todo={todo} />)))
+
+
+
+						}
 
 					</ul >
 				</div>
